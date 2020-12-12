@@ -20,8 +20,7 @@ export class ArticleService {
   }
 
   async postArticles(post: CreateArticleDTO): Promise<Article> {
-    //const article = new this.articleModel(post);
-    //return article.save(); 
+    
     return this.articleModel.findOneAndUpdate(
       {articleID: post.articleID}, 
       {$setOnInsert: post}, 
@@ -29,7 +28,7 @@ export class ArticleService {
       function(err, article){
         if(err) console.log(err);  
         return article        
-      })
+    })
        
   }
 
