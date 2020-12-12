@@ -6,10 +6,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { connection } from 'mongoose';
 
 @Module({
-  imports: [ArticlesModule, MongooseModule.forRoot('mongodb://localhost/articlesNode', function(){
-    connection.dropDatabase(()=> console.log('err')
-      )
-  })],
+  imports: [ArticlesModule, MongooseModule.forRoot('mongodb://localhost/articlesNode', {useCreateIndex: true, useFindAndModify: false})],
   controllers: [AppController],
   providers: [AppService],
 })

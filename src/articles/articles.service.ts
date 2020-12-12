@@ -20,20 +20,23 @@ export class ArticleService {
   }
 
   async postArticles(post: CreateArticleDTO): Promise<Article> {
-    const article = new this.articleModel(post);
-    return article.save();      
+    //const article = new this.articleModel(post);
+    //return article.save(); 
+    return this.articleModel.findOneAndUpdate(
+      {articleID: post.articleID}, 
+      {$setOnInsert: post}, 
+      {upsert: true, new: true, setDefaultsOnInsert: true}, 
+      function(err, article){
+        if(err) console.log(err);  
+        return article        
+      })
+       
   }
 
   async deleteArticle(productID: string): Promise<Article> {
     const deleted = await this.articleModel.findByIdAndDelete(productID);
     return deleted
-  }
-
-  async updateArticle(articleID: string, createArticleDTO: CreateArticleDTO): Promise<Article> {
-    const updated = await this.articleModel
-                        .findByIdAndUpdate(articleID, createArticleDTO, {new: true});
-    return updated;
-  }
+  }  
 
   async getData(): Promise<Observable<Object[]>> {
     return await Axios.get(this.dataUrl, {
