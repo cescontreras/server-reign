@@ -8,8 +8,8 @@ import Axios, { AxiosResponse } from "axios";
 
 @Injectable()
 export class ArticleService {
-  private readonly dataUrl = 'https://hn.algolia.com/api/v1/search_by_date?query=nodejs';
-  constructor(@InjectModel('Article') readonly articleModel: Model<Article>, private readonly http: HttpService) {}
+  private readonly dataUrl: string = 'https://hn.algolia.com/api/v1/search_by_date?query=nodejs';
+  constructor(@InjectModel('Article') readonly articleModel: Model<Article>, private readonly http?: HttpService) {}
 
   async getArticles(): Promise<Article[]> {
     const articles = await this.articleModel.find().sort({creationDate: 'desc'})  
@@ -36,8 +36,8 @@ export class ArticleService {
     return await Axios.get(this.dataUrl, {
       headers: {
         'Content-Type': 'application/json'
-      }}
-    ).then((res) => {
+      }
+    }).then((res) => {
       return res.data.hits
     })      
   }

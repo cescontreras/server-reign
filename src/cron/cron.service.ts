@@ -19,6 +19,7 @@ export class CronService {
   async getScheduled() {
     try {
       await this.AppService.getData();
+      console.log('Hourly Refresh OK');        
     } catch (err) {
       console.log(err);        
     }

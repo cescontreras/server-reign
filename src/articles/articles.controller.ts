@@ -8,13 +8,13 @@ export class ArticlesController {
   constructor(private articleService: ArticleService){}
 
   @Post('/create')
-  async createPost(@Res() res, @Body() createArticleDTO: CreateArticleDTO) {
+  async createPost(@Body() createArticleDTO: CreateArticleDTO, @Res() res?) {
     const article = await this.articleService.postArticles(createArticleDTO)      
     return res.status(HttpStatus.OK).json({message: 'Creado', article})
   }
 
   @Get('/')
-  async getArticle(@Res() res) {
+  async getArticle(@Res() res?) {
     const articles = await this.articleService.getArticles();
     res.status(HttpStatus.OK).json({message: 'Articulos', articles})
   }

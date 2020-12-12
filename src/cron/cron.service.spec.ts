@@ -6,7 +6,15 @@ describe('CronService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [CronService],
+      providers: [
+        {
+          provide: CronService,
+          useFactory: () => ({
+            get: jest.fn(() => {}),
+            getScheduled: jest.fn(() => {})
+          })
+        }
+      ],
     }).compile();
 
     service = module.get<CronService>(CronService);
@@ -15,4 +23,8 @@ describe('CronService', () => {
   it('should be defined', () => {
     expect(service).toBeDefined();
   });
+
+  it('should not have been call instantly', () => {
+    expect(service.getScheduled).not.toHaveBeenCalled()
+  })
 });
