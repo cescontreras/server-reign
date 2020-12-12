@@ -1,5 +1,4 @@
-import { HttpService, HttpStatus, Injectable, Res } from '@nestjs/common';
-import { connection } from 'mongoose';
+import { Injectable } from '@nestjs/common';
 import { ArticleService } from './articles/articles.service';
 import { CreateArticleDTO } from './articles/dto/articles.dto';
 
@@ -11,7 +10,7 @@ export class AppService {
   getHello(): string {
     return 'Hello World!';
   } 
-   
+ 
   async getData() {
     try{
       const data = await this.articleService.getData();     
@@ -23,5 +22,4 @@ export class AppService {
       console.log(err);        
     }
   }
-
 }

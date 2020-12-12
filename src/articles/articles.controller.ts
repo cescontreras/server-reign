@@ -19,21 +19,6 @@ export class ArticlesController {
     res.status(HttpStatus.OK).json({message: 'Articulos', articles})
   }
 
-  // @Get('/data')
-  // async getData(@Res() res) {
-  //   try{
-  //     const data = await this.articleService.getData()
-  //     console.log(data && 'OK');      
-  //     await data.forEach((article: any) => {
-  //       let dtoArticle = new CreateArticleDTO(article)
-  //       this.articleService.postArticles(dtoArticle).catch(err => console.log(err))    
-  //     })
-  //     res.status(HttpStatus.OK).json({message: 'Ok'})
-  //   }catch(err){
-  //     console.log(err);        
-  //   }
-  // }
-
   @Delete('/delete/:articleId')
   async deleteArticle(@Res() res, @Param('articleId') articleId) {
     const deleted = await this.articleService.deleteArticle(articleId)

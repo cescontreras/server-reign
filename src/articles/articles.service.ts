@@ -1,13 +1,10 @@
 import { HttpService, Injectable } from '@nestjs/common';
 import { Model } from "mongoose";
 import { InjectModel } from "@nestjs/mongoose";
-
 import { Article } from "./interfaces/articles.interface";
 import { CreateArticleDTO } from "./dto/articles.dto";
 import { Observable } from 'rxjs';
 import Axios, { AxiosResponse } from "axios";
-import { map } from 'rxjs/operators';
-
 
 @Injectable()
 export class ArticleService {
@@ -19,8 +16,7 @@ export class ArticleService {
     return articles
   }
 
-  async postArticles(post: CreateArticleDTO): Promise<Article> {
-    
+  async postArticles(post: CreateArticleDTO): Promise<Article> {    
     return this.articleModel.findOneAndUpdate(
       {articleID: post.articleID}, 
       {$setOnInsert: post}, 
@@ -28,8 +24,7 @@ export class ArticleService {
       function(err, article){
         if(err) console.log(err);  
         return article        
-    })
-       
+    })     
   }
 
   async deleteArticle(productID: string): Promise<Article> {
