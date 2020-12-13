@@ -9,7 +9,7 @@ import { CronService } from './cron/cron.service';
 @Module({
   imports: [
     ArticlesModule, 
-    MongooseModule.forRoot('mongodb://localhost/articlesNode', 
+    MongooseModule.forRoot('mongodb://mongo/articlesNode', 
       { 
         useFindAndModify: false,
         useCreateIndex: true

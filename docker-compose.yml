@@ -1,0 +1,15 @@
+version: "3"
+services:
+  server:
+    container_name: server
+    restart: always
+    build: .
+    ports:
+      - "5001:3001"
+    links:
+      - mongo      
+  mongo:
+    image: mongo
+    container_name: database
+    ports:
+      - "27017:27017"
