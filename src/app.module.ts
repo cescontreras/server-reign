@@ -10,7 +10,10 @@ import { CronService } from './cron/cron.service';
   imports: [
     ArticlesModule, 
     MongooseModule.forRoot('mongodb://localhost/articlesNode', 
-      { useFindAndModify: false }),
+      { 
+        useFindAndModify: false,
+        useCreateIndex: true
+      }),
     ScheduleModule.forRoot()
   ],
   controllers: [AppController],

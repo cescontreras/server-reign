@@ -9,7 +9,8 @@ export class CronService {
   @Timeout(100)
   async get() {
     try {
-      await this.AppService.getData();      
+      await this.AppService.getData();   
+      console.log('Ok');           
     } catch (err) {
       console.log(err);        
     }
